@@ -37,30 +37,25 @@ def get_indices_of_item_weights(weights, length, limit):
         hash_table_insert(ht, weights[i], i)
 
     #print(ht)
-
+    answer = []
     found = False
     count = 0
     for i in range(0, length):
         value = hash_table_retrieve(ht,weights[i])
         weight_match = limit - weights[i]
-        print(value)
-        print(weight_match)
-        print(weights[i])
-        
-        if weight_match == weights[value]:
-            # we have a match
-            found = True
-            print("we have a match")
-        print("not found")
-        #return found
-
-
-
-
-
-
-
-    return None
+        #print(value)
+        for j in range(0, length):
+            if weight_match == weights[j]:
+                if j > i:
+                    answer.append(j)
+                    answer.append(i)
+                else:
+                     answer.append(i)
+                     answer.append(j) 
+                #print_answer(answer)
+                return answer
+    answer = None    
+    return answer
 
 
 def print_answer(answer):
@@ -69,7 +64,7 @@ def print_answer(answer):
     else:
         print("None")
 
-new_weights = [ 4, 6, 10, 15, 16 ] 
-new_length = 5 
-new_limit = 21
-get_indices_of_item_weights(new_weights, new_length, new_limit)
+#new_weights = [ 4, 6, 10, 15, 16 ] 
+#new_length = 5 
+#new_limit = 21
+#get_indices_of_item_weights(new_weights, new_length, new_limit)
