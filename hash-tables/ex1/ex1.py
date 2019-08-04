@@ -22,38 +22,24 @@ def get_indices_of_item_weights(weights, length, limit):
     # store weight as the key
     # store list index as the value
 
-    #calculate values we need so subtract the weight from 21 to get value
-    #new_indexes = []
-
-    #for weight in weights:
-    #    weight_match = limit - weight
-    #    new_indexes.append(weight_match)
-    #    #print(weight_match)
-    #    #print(new_indexes)
-
-    #for weight in weights:
-        
-    for i in range(0, length):
+    for i in range(length):
         hash_table_insert(ht, weights[i], i)
 
-    #print(ht)
-    answer = []
-    found = False
-    count = 0
-    for i in range(0, length):
-        value = hash_table_retrieve(ht,weights[i])
+    for i in range(length):
+        value = hash_table_retrieve(ht, weights[i])
+        
         weight_match = limit - weights[i]
-        #print(value)
-        for j in range(0, length):
+    
+        for j in range(length):
             if weight_match == weights[j]:
                 if j > i:
-                    answer.append(j)
-                    answer.append(i)
-                else:
-                     answer.append(i)
-                     answer.append(j) 
-                #print_answer(answer)
-                return answer
+                    answer = tuple((str(j), str(i)))
+                    print_answer(answer)
+                    return answer
+                elif j < i:
+                    answer = tuple((str(i), str(j)))
+                    print_answer(answer)
+                    return answer           
     answer = None    
     return answer
 
@@ -64,7 +50,3 @@ def print_answer(answer):
     else:
         print("None")
 
-#new_weights = [ 4, 6, 10, 15, 16 ] 
-#new_length = 5 
-#new_limit = 21
-#get_indices_of_item_weights(new_weights, new_length, new_limit)
