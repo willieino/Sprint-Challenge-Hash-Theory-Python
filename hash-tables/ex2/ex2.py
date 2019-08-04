@@ -34,46 +34,46 @@ def reconstruct_trip(tickets, length):
     for i in range(length):
         hash_table_insert(hashtable, tickets[i].source, tickets[i].destination)
    
-    for i in range(length):
-        # retrieve a ticket from hash table
-        found = False
-        count = 0
-        while found is False:
-            print("Count: ", count)
-            destination = hash_table_retrieve(hashtable, tickets[count].source)
-            print(destination)
-            print(tickets[count].source)
-            
-            if tickets[count].source == "NONE":
-                found = True
-                route.append(destination)
+    found = False
+    count = 0
+    source = ""
+    while found is False:
+        print("Count: ", count)
+        destination = hash_table_retrieve(hashtable, tickets[count].source)
+        print(destination)
+        print(tickets[count].source)
+        
+        if tickets[count].source == "NONE":
+            found = True
+            route.append(destination)
+            source = destination
+        count += 1
+    count = 0
+    found = False
+    #print("Destination", destination)
+    while destination is not "NONE":
+    #for i in range(length):
+        
+        destination = hash_table_retrieve(hashtable, tickets[count].source)
+        if source == tickets[count].source:
+            if destination == "NONE":
+                return route
+            route.append(destination)
+            source = destination
+            count = 0  
+        #elif destination == None:
+        #    return route
+        else:
             count += 1
-        print("Got the first card")
-        
-        return
-        # so we have the first card.
-
-        # search tickets until the source = None
-        # so this is the first card
-    
-        # Loop through the cards
-        # compare the current destination to the rest of the cards sources  
-        # until i find a match
-        
-        # a match means its the next card so append it to our temp array
-
-        # make it our current source and repeat the loop
-
-
-
-
-
+            print(destination)       
+  
     return route
 
 
-ticket_1 = Ticket("NONE", "PDX")
-ticket_2 = Ticket("PDX", "DCA")
-ticket_3 = Ticket("DCA", "NONE")
-length = 2
-tickets = [ticket_1, ticket_2, ticket_3]
-reconstruct_trip(tickets, length)
+#ticket_1 = Ticket("NONE", "PDX")
+#ticket_2 = Ticket("PDX", "DCA")
+#ticket_3 = Ticket("DCA", "NONE")
+#length = 2
+#tickets = [ticket_1, ticket_2, ticket_3]
+#new_route = reconstruct_trip(tickets, length)
+#print(new_route)
