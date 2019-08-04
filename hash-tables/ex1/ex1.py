@@ -27,18 +27,14 @@ def get_indices_of_item_weights(weights, length, limit):
 
     for i in range(length):
         value = hash_table_retrieve(ht, weights[i])
-        
-        weight_match = limit - weights[i]
-    
+        weight_match = limit - weights[i]  
         for j in range(length):
             if weight_match == weights[j]:
                 if j > i:
-                    answer = tuple((str(j), str(i)))
-                    print_answer(answer)
+                    answer = tuple((j, i))   
                     return answer
                 elif j < i:
-                    answer = tuple((str(i), str(j)))
-                    print_answer(answer)
+                    answer = tuple((i, j))  
                     return answer           
     answer = None    
     return answer
