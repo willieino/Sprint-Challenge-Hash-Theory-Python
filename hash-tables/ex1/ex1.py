@@ -23,16 +23,17 @@ def get_indices_of_item_weights(weights, length, limit):
     # store list index as the value
 
     for i in range(length):
-        hash_table_insert(ht, weights[i], i)
+        hash_table_insert(ht, i, weights[i])
 
-    for i in range(length):
-        value = hash_table_retrieve(ht, weights[i])
-        # determine the weight that we need: subtract current weight from limit
-        weight_match = limit - weights[i]  
+    for i in range(length):     
+        value = hash_table_retrieve(ht, i)
+        # determine the weight that we need: subtract current weight from limit    
+        weight_match = limit - value  
         # not happy with this part
         for j in range(length):
             # check for a match
-            if weight_match == weights[j]:
+            value = hash_table_retrieve(ht, j)          
+            if weight_match == value:
                 # need to put the largest index first in the tuple
                 if j > i:
                     # match found, return the answer in a tuple
